@@ -3,14 +3,14 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>AELFFaucet</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.TestBase" Version="6.0.3" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="6.0.3" />
-    <PackageReference Include="Volo.Abp.Authorization" Version="6.0.3" />
+    <PackageReference Include="Volo.Abp.TestBase" Version="8.0.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="8.0.0" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="8.0.0" />
     <ProjectReference Include="..\..\src\AELFFaucet.Domain\AELFFaucet.Domain.csproj" />
   </ItemGroup>
 
