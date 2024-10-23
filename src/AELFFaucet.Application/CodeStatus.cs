@@ -6,6 +6,8 @@ namespace AELFFaucet
         HadReceived = 2, //已领取过
         InvalidAddress = 3, //无效地址
         BalanceNotAdequate = 4, //余额不足
-        SystemError = 5 //系统错误
+        SystemError = 5, //系统错误
+        InvalidPlatform = 6,
+        InvalidCaptcha = 7
     }
 }
