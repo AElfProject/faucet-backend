@@ -107,7 +107,7 @@ public class ClaimService : AELFFaucetAppService, IClaimService
         if (gotTokenBefore is { IsSentToken: true })
         {
             messageResult.IsSuccess = false;
-            messageResult.Message = "You have received the test tokens and cannot receive it again.";
+            messageResult.Message = $"You have received the test tokens and cannot receive it again";
             messageResult.Code = Convert.ToInt32(CodeStatus.HadReceived);
             return messageResult;
         }
@@ -148,7 +148,7 @@ public class ClaimService : AELFFaucetAppService, IClaimService
             if (result == null)
             {
                 messageResult.IsSuccess = false;
-                messageResult.Message = "System error: Failed to insert send token info.";
+                messageResult.Message = $"System error: Failed to insert send token info.";
                 messageResult.Code = Convert.ToInt32(CodeStatus.SystemError);
             }
         }
