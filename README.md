@@ -30,7 +30,7 @@ This project implements a backend service that allows users to request test toke
 
 Before you begin, ensure you have met the following requirements:
 
-- [.NET SDK](https://dotnet.microsoft.com/download) (version 6.0 or later)
+- [.NET SDK](https://dotnet.microsoft.com/download) (version 8.0 or later)
 - [AElf SDK](https://github.com/AElfProject/AElf)
 
 ## Installation
@@ -64,14 +64,6 @@ Create a `appsettings.json` file in the AELFFaucet.Web directory of the project 
   "ConnectionStrings": {
     "Default": "mongodb://localhost:27017/SendTokenDB"
   },
-  "ApiConfig": {
-    "BaseUrl": "http://3.25.10.185:8000",
-    "BaseUrlForMainchain": "https://aelf-test-node.aelf.io",
-    "BaseUrlForSidechain": "https://tdvw-test-node.aelf.io",
-    "PrivateKey": "b192e307da4c4e1a00eeed442a4b5e8e0b7b2c6f838d0472627b846e5280c51c",
-    "SendCount": 100,
-    "NftSeedPrivateKey": "97a1747af1539a6b839c92227c8f5ca90ef0e7de70e5c2f46c64f27b12fabdd7"
-  },
   "Kestrel": {
     "EndPoints": {
       "Http": {
@@ -88,6 +80,25 @@ Create a `appsettings.json` file in the AELFFaucet.Web directory of the project 
   }
 }
 ```
+
+## Setup secrets.json file
+
+Run this following command in terminal of the AELFFaucet.Web directory to generate the secrets.json file with all ENV keys: 
+
+```base title="Terminal"
+dotnet user-secrets init
+dotnet user-secrets set "ApiConfig:BaseUrl" "http://3.25.10.185:8000"
+dotnet user-secrets set "ApiConfig:PrivateKey" "b192e307da4c4e1a00eeed442a4b5e8e0b7b2c6f838d0472627b846e5280c51c"
+dotnet user-secrets set "ApiConfig:NftSeedPrivateKey" "97a1747af1539a6b839c92227c8f5ca90ef0e7de70e5c2f46c64f27b12fabdd7"
+dotnet user-secrets set "ApiConfig:BaseUrlForMainchain" "https://aelf-test-node.aelf.io"
+dotnet user-secrets set "ApiConfig:BaseUrlForSidechain" "https://tdvw-test-node.aelf.io"
+dotnet user-secrets set "ApiConfig:SendCount" "100"
+dotnet user-secrets set "ApiConfig:RecaptchaVerifyUrl" "https://www.google.com/recaptcha/api/siteverify"
+dotnet user-secrets set "ApiConfig:FaucetUI" "6LcovGQqAAAAAO3AI_xiH1C_m9D7LGPwKVQKxcEW"
+dotnet user-secrets set "ApiConfig:Playground" "6LfgxmQqAAAAADPdRxWA_KMRMPNLCV9XlI-rnKGK"
+dotnet user-secrets set "ApiConfig:AelfStudio" "6LfkxmQqAAAAABg622JHjULYqrSLE7JQa6Q_UXyr"
+```
+ 
 Replace the PrivateKey and NftSeedPrivateKey with your actual AElf testnet node private keys for storing token pool for token distribution.
 
 ## Usage

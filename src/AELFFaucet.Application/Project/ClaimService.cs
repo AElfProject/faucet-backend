@@ -30,8 +30,7 @@ public class ClaimService : AELFFaucetAppService, IClaimService
         return platform switch
         {
             "FaucetUI" => _apiConfig.FaucetUI,
-            "PlaygroundStaging" => _apiConfig.PlaygroundStaging,
-            "PlaygroundProduction" => _apiConfig.PlaygroundProduction,
+            "Playground" => _apiConfig.Playground,
             "AelfStudio" => _apiConfig.AelfStudio,
             _ => null
         };
@@ -39,7 +38,7 @@ public class ClaimService : AELFFaucetAppService, IClaimService
 
     private async Task<bool> VerifyRecaptchaAsync(string recaptchaToken, string secretKey)
     {
-        var url = $"https://www.google.com/recaptcha/api/siteverify?secret={secretKey}&response={recaptchaToken}";
+        var url = $"{_apiConfig.RecaptchaVerifyUrl}?secret={secretKey}&response={recaptchaToken}";
 
         using (var client = new HttpClient())
         {
@@ -49,11 +48,6 @@ public class ClaimService : AELFFaucetAppService, IClaimService
 
             return captchaResponse.success;
         }
-    }
-
-    public class CaptchaResponse
-    {
-        public bool success { get; set; }
     }
 
     [Route("api/claim")]
@@ -287,20 +281,5 @@ public class ClaimService : AELFFaucetAppService, IClaimService
         messageResult.Message = sendTokenMessageResult.Message;
 
         return messageResult;
-    }
-
-    public Task<MessageResult> ClaimTokenAsync(string walletAddress)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<MessageResult> ClaimSeedAsync(string walletAddress)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<MessageResult> ClaimNFTSeedAsync(string walletAddress)
-    {
-        throw new NotImplementedException();
     }
 }
