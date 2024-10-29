@@ -89,12 +89,12 @@ Run this following command in terminal of the AELFFaucet.Web directory to genera
 dotnet user-secrets init
 dotnet user-secrets set "ApiConfig:PrivateKey" "b192e30XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX280c51c"
 dotnet user-secrets set "ApiConfig:NftSeedPrivateKey" "97a1747XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX12fabdd7"
-dotnet user-secrets set "ApiConfig:FaucetUI" "6LcovGQqAAAAAO3AI_xiH1C_m9D7LGPwKVQKxcEW"
-dotnet user-secrets set "ApiConfig:Playground" "6LfgxmQqAAAAADPdRxWA_KMRMPNLCV9XlI-rnKGK"
-dotnet user-secrets set "ApiConfig:AelfStudio" "6LfkxmQqAAAAABg622JHjULYqrSLE7JQa6Q_UXyr"
+dotnet user-secrets set "ApiConfig:FaucetUI" "6LcovXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXKxcEW"
+dotnet user-secrets set "ApiConfig:Playground" "6LfgxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXrnKGK"
+dotnet user-secrets set "ApiConfig:AelfStudio" "6LfkxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX_UXyr"
 ```
  
-Replace the PrivateKey and NftSeedPrivateKey with your actual AElf testnet node private keys for storing token pool for token distribution.
+Replace the Value of all keys with your actual values for storing token pool for token distribution.
 
 ## Usage
 Run the service:
