@@ -87,13 +87,8 @@ Run this following command in terminal of the AELFFaucet.Web directory to genera
 
 ```base title="Terminal"
 dotnet user-secrets init
-dotnet user-secrets set "ApiConfig:BaseUrl" "http://3.25.10.185:8000"
-dotnet user-secrets set "ApiConfig:PrivateKey" "b192e307da4c4e1a00eeed442a4b5e8e0b7b2c6f838d0472627b846e5280c51c"
-dotnet user-secrets set "ApiConfig:NftSeedPrivateKey" "97a1747af1539a6b839c92227c8f5ca90ef0e7de70e5c2f46c64f27b12fabdd7"
-dotnet user-secrets set "ApiConfig:BaseUrlForMainchain" "https://aelf-test-node.aelf.io"
-dotnet user-secrets set "ApiConfig:BaseUrlForSidechain" "https://tdvw-test-node.aelf.io"
-dotnet user-secrets set "ApiConfig:SendCount" "100"
-dotnet user-secrets set "ApiConfig:RecaptchaVerifyUrl" "https://www.google.com/recaptcha/api/siteverify"
+dotnet user-secrets set "ApiConfig:PrivateKey" "b192e30XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX280c51c"
+dotnet user-secrets set "ApiConfig:NftSeedPrivateKey" "97a1747XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX12fabdd7"
 dotnet user-secrets set "ApiConfig:FaucetUI" "6LcovGQqAAAAAO3AI_xiH1C_m9D7LGPwKVQKxcEW"
 dotnet user-secrets set "ApiConfig:Playground" "6LfgxmQqAAAAADPdRxWA_KMRMPNLCV9XlI-rnKGK"
 dotnet user-secrets set "ApiConfig:AelfStudio" "6LfkxmQqAAAAABg622JHjULYqrSLE7JQa6Q_UXyr"
