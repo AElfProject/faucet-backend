@@ -5,7 +5,7 @@ namespace AELFFaucet.Project;
 
 public interface IClaimService: IApplicationService
 {
-    Task<MessageResult> ClaimTokenAsync(string walletAddress);
-    Task<MessageResult> ClaimSeedAsync(string walletAddress);
-    Task<MessageResult> ClaimNFTSeedAsync(string walletAddress);
+    Task<MessageResult> ClaimTokenAsync(string walletAddress, string recaptchaToken, string platform);
+    Task<MessageResult> ClaimSeedAsync(string walletAddress, string recaptchaToken, string platform);
+    Task<MessageResult> ClaimNFTSeedAsync(string walletAddress, string recaptchaToken, string platform);
 }

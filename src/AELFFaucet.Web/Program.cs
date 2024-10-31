@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AELFFaucet.Web
 {
@@ -38,6 +39,11 @@ namespace AELFFaucet.Web
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices((context, services) =>
+                {
+                    // Bind ApiConfigOptions to configuration
+                    services.Configure<ApiConfigOptions>(context.Configuration.GetSection("ApiConfig"));
                 })
                 .UseAutofac();
     }

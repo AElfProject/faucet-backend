@@ -8,4 +8,9 @@ public class ApiConfigOptions
     public string PrivateKey { get; set; }
     public int SendCount { get; set; }
     public string NftSeedPrivateKey { get; set; }
+    public string RecaptchaVerifyUrl { get; set; }
+    public string FaucetUI { get; set; }
+    public string Playground { get; set; }
+    public string AelfStudio { get; set; }
+
 }
