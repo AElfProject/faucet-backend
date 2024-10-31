@@ -92,6 +92,7 @@ dotnet user-secrets set "ApiConfig:NftSeedPrivateKey" "97a1747XXXXXXXXXXXXXXXXXX
 dotnet user-secrets set "ApiConfig:FaucetUI" "6LcovXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXKxcEW"
 dotnet user-secrets set "ApiConfig:Playground" "6LfgxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXrnKGK"
 dotnet user-secrets set "ApiConfig:AelfStudio" "6LfkxXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX_UXyr"
+dotnet user-secrets set "ConnectionStrings:Default" "mongodb://localhost:27017/SendTokenDB"
 ```
  
 Replace the Value of all keys with your actual values for storing token pool for token distribution.
