@@ -1,0 +1,74 @@
+name: Build and Deploy Faucet Backend
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: Environment
+        type: choice
+        required: true
+        default: staging
+        options:
+          - staging
+          - production
+run-name: Build and Deploy Faucet Backend ${{ github.head_ref }} ${{ github.sha }} to ${{ inputs.env }}
+env:
+  IMAGE_NAME: faucet-backend
+jobs:
+  build-and-push-image:
+    runs-on: aelf-faucet-backend-runner
+    strategy:
+      matrix:
+        include:
+          - service: "dbmigrator"
+            name: "AELFFaucet.DbMigrator"
+          - service: "web"
+            name: "AELFFaucet.Web"
+    outputs:
+      short_sha: ${{ steps.vars.outputs.short_sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set short git commit SHA
+        id: vars
+        run: |
+          calculatedSha=$(git rev-parse --short ${{ github.sha }})
+          echo "short_sha=$calculatedSha" >> "$GITHUB_OUTPUT"
+      - name: Create image tag
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.REPOSITORY_REGION }}-docker.pkg.dev/${{ secrets.PROJECT_ID }}/${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME }}-${{ matrix.service }}
+          tags: |
+            type=sha
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push Docker image
+        id: build-and-push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64
+          build-args: |
+            servicename=${{ matrix.name }}
+  dispatch:
+    runs-on: aelf-faucet-backend-runner
+    needs: build-and-push-image
+    steps:
+      - name: Deploy
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.TOK }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: 'AElfDevops',
+              repo: 'devops',
+              workflow_id: 'faucet-backend-deploy.yaml',
+              ref: 'main',
+              inputs: {
+                env: '${{ github.event.inputs.env }}',
+                commit_sha: 'sha-${{ needs.build-and-push-image.outputs.short_sha }}',
+              }
+            })
